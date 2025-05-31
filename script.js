@@ -89,11 +89,29 @@ projects.forEach(proj => {
 });
 
 // --- Contact Form ---
-document.getElementById('contactForm').onsubmit = function(e) {
+document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    document.getElementById('contactMsg').textContent = "Thank you for reaching out! I'll get back to you soon.";
-    this.reset();
-};
+    const form = this;
+    const msgDiv = document.getElementById('contactMsg');
+    msgDiv.textContent = "Sending...";
+
+    fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        if (response.ok) {
+            msgDiv.textContent = "Thank you for reaching out! I'll get back to you soon.";
+            form.reset();
+        } else {
+            msgDiv.textContent = "Oops! Something went wrong. Please try again later.";
+        }
+    })
+    .catch(() => {
+        msgDiv.textContent = "Oops! Something went wrong. Please try again later.";
+    });
+});
 
 // --- Hamburger Menu Toggle ---
 const navToggle = document.getElementById('navToggle');

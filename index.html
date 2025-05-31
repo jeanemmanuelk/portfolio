@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jean-Emmanuel-K's Portfolio</title>
+    <link rel="icon" type="image/png" href="./images/page_logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-logo">My Portfolio</div>
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#top">Top</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://github.com/jeanemmanuelk" target="_blank">GitHub</a></li>
+            <li><a href="https://www.kaggle.com/jeanemmanuelkouadio" target="_blank">Kaggle</a></li>
+            <li><a href="https://www.linkedin.com/in/j-emmanuel-k/" target="_blank">LinkedIn</a></li>
+            <li><a href="./resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+
+    <!-- Top Section -->
+    <section id="top" class="top-section">
+        <div class="welcome-container">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Explore my data science projects, learn more about me, and feel free to get in touch!</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <h2>Latest Projects</h2>
+        <div class="projects-gallery" id="projectsGallery">
+            <!-- Project cards will be injected here by JS -->
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about-section">
+        <h2>About Me</h2>
+        <div class="about-flex">
+            <img 
+                src="./images/profile-pic (5).png" 
+                alt="Jean-Emmanuel Kouadio" 
+                class="about-photo"
+                id="aboutPhoto"
+            >
+            <div class="about-desc" id="aboutDesc">
+                Hi! I'm <strong>Jean-Emmanuel Kouadio</strong>, a data scientist with a dual Master’s in Data Analytics & Information Systems and an MBA. I combine technical expertise in AI, machine learning, and engineering with a passion for turning data into actionable insights. I have experience in research, product development, and building tools that drive better decisions. Let’s connect and create impact with data!
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+        <form id="contactForm" action="https://formsubmit.co/emmanuelkj5@gmail.com" method="POST" autocomplete="off">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" placeholder="Message" required></textarea>
+            <!-- Prevent spam -->
+            <input type="hidden" name="_captcha" value="false">
+            <button class="magic-btn" type="submit">Send</button>
+        </form>
+        <div id="contactMsg" aria-live="polite"></div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

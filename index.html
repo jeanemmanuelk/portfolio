@@ -61,19 +61,21 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2>Contact</h2>
-        <form id="contactForm" action="https://formsubmit.co/emmanuelkj5@gmail.com" method="POST" autocomplete="off">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="text" name="subject" placeholder="Subject" required>
-            <textarea name="message" placeholder="Message" required></textarea>
-            <!-- Prevent spam -->
-            <input type="hidden" name="_captcha" value="false">
-            <button class="magic-btn" type="submit">Send</button>
-        </form>
-        <div id="contactMsg" aria-live="polite"></div>
-    </section>
+   <section id="contact" class="contact-section">
+    <h2>Contact</h2>
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" autocomplete="off">
+        <!-- Web3Forms Access Key -->
+        <input type="hidden" name="access_key" value="629e16d8-f6a8-4d2c-877a-57adf0fea1bd">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <!-- Optional: Redirect URL after success -->
+        <!-- <input type="hidden" name="redirect" value="https://yourdomain.com/thank-you.html"> -->
+        <button class="magic-btn" type="submit">Send</button>
+    </form>
+    <div id="contactMsg" aria-live="polite"></div>
+</section>
 
     <script src="script.js"></script>
 </body>

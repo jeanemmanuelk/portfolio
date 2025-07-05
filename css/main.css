@@ -935,6 +935,9 @@ body {
 }
 
 @media (max-width: 576px) {
+    .hero-content {
+        padding-top: 80px; /* Adjust this value if your navbar is taller/shorter */
+    }
     .hero-title {
         font-size: 2rem;
     }

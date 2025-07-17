@@ -38,6 +38,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Project data
     const projects = [
         {
+            id: "azure-pipeline",
+            title: "Azure Data Engineering Pipeline",
+            description: "Built a complete end-to-end data engineering pipeline using Azure services to automate the extraction, transformation, and visualization of data from an external HTTP source. The project demonstrates how cloud-based tools can be integrated to deliver scalable, analytics-ready datasets and insightful dashboards.",
+            technologies: ["Azure Data Factory", "Azure Databricks", "PySpark", "SQL", "Power BI"],
+            github: "https://github.com/jeanemmanuelk/Olympic-azure-databricks-project",
+            demo: "#",
+            image: "./images/Olympic flowchart.png", 
+            impact: [
+                "Used Azure Data Factory to ingest data from a public HTTP endpoint into Azure Data Lake Storage Gen2",
+                "Transformed raw data using Azure Databricks with a combination of PySpark and SQL",
+                "Stored cleaned data in a separate ADLS Gen2 zone for analytics",
+                "Connected Power BI to transformed data and built an interactive dashboard",
+                "Included a visual architecture diagram and exported dashboard PDF for documentation and presentation"
+            ]
+        },
+        {
             id: "fake-news",
             title: "Fake News Detector (LSTM)",
             description: "Developed a machine learning model using a Long Short-Term Memory (LSTM) neural network to classify news articles as real or fake based on their textual content. The goal is to leverage Natural Language Processing (NLP) and deep learning techniques to build a reliable, data-driven fake news detection system.",

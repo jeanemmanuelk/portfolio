@@ -38,6 +38,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Project data
     const projects = [
         {
+            id: "credit-risk-modeling",
+            title: "Bank Credit Risk Modeling",
+            description: "Developed a machine learning workflow to predict credit default risk using bank loan data. The project highlights how preprocessing, feature engineering, and advanced modeling techniques can be combined to build interpretable and robust credit scoring models.",
+            technologies: ["Python", "Scikit-Learn", "Pandas", "Imbalanced-learn", "Numpy","Seaborn", "Matplotlib"],
+            github: "https://github.com/jeanemmanuelk/Credit_Risk_modeling",
+            demo: "#",
+            image: "./images/credit_risk.png", 
+            impact: [
+                "Translated and standardized categorical variables (Sex, Education, Industry, Region) into English",
+                "Engineered financial features such as Debt-to-Income ratio and Utilization rate",
+                "Addressed severe class imbalance (~95/5) using SMOTE oversampling",
+                "Built and compared two models: Logistic Regression (baseline) and Random Forest (ensemble)",
+                "Achieved ROC-AUC ~0.90 with Random Forest, significantly improving the detection of high-risk borrowers compared to Logistic Regression"
+            ]
+        },
+        {
             id: "azure-pipeline",
             title: "Azure Data Engineering Pipeline",
             description: "Built a complete end-to-end data engineering pipeline using Azure services to automate the extraction, transformation, and visualization of data from an external HTTP source. The project demonstrates how cloud-based tools can be integrated to deliver scalable, analytics-ready datasets and insightful dashboards.",

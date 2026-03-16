@@ -1,397 +1,358 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    menuToggle.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        this.classList.toggle('active');
-    });
-    
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuToggle.classList.remove('active');
-        });
-    });
-    
-    // Dark/light mode toggle
-    const themeToggle = document.querySelector('.theme-toggle');
-    const html = document.documentElement;
-    
-    themeToggle.addEventListener('click', function() {
-        if (html.getAttribute('data-theme') === 'dark') {
-            html.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme') || 
-                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    html.setAttribute('data-theme', savedTheme);
-    
-    // Project data
-    const projects = [
-        {
-            id: "credit-risk-modeling",
-            title: "Bank Credit Risk Modeling",
-            description: "Developed a machine learning workflow to predict credit default risk using bank loan data. The project highlights how preprocessing, feature engineering, and advanced modeling techniques can be combined to build interpretable and robust credit scoring models.",
-            technologies: ["Python", "Scikit-Learn", "Pandas", "Imbalanced-learn", "Numpy","Seaborn", "Matplotlib"],
-            github: "https://github.com/jeanemmanuelk/Credit_Risk_modeling",
-            demo: "#",
-            image: "./images/credit_risk.png", 
-            impact: [
-                "Translated and standardized categorical variables (Sex, Education, Industry, Region) into English",
-                "Engineered financial features such as Debt-to-Income ratio and Utilization rate",
-                "Addressed severe class imbalance (~95/5) using SMOTE oversampling",
-                "Built and compared two models: Logistic Regression (baseline) and Random Forest (ensemble)",
-                "Achieved ROC-AUC ~0.90 with Random Forest, significantly improving the detection of high-risk borrowers compared to Logistic Regression"
-            ]
-        },
-        {
-            id: "azure-pipeline",
-            title: "Azure Data Engineering Pipeline",
-            description: "Built a complete end-to-end data engineering pipeline using Azure services to automate the extraction, transformation, and visualization of data from an external HTTP source. The project demonstrates how cloud-based tools can be integrated to deliver scalable, analytics-ready datasets and insightful dashboards.",
-            technologies: ["Azure Data Factory", "Azure Databricks", "PySpark", "SQL", "Power BI"],
-            github: "https://github.com/jeanemmanuelk/Olympic-azure-databricks-project",
-            demo: "#",
-            image: "./images/Olympic flowchart.png", 
-            impact: [
-                "Used Azure Data Factory to ingest data from a public HTTP endpoint into Azure Data Lake Storage Gen2",
-                "Transformed raw data using Azure Databricks with a combination of PySpark and SQL",
-                "Stored cleaned data in a separate ADLS Gen2 zone for analytics",
-                "Connected Power BI to transformed data and built an interactive dashboard",
-                "Included a visual architecture diagram and exported dashboard PDF for documentation and presentation"
-            ]
-        },
-        {
-            id: "fake-news",
-            title: "Fake News Detector (LSTM)",
-            description: "Developed a machine learning model using a Long Short-Term Memory (LSTM) neural network to classify news articles as real or fake based on their textual content. The goal is to leverage Natural Language Processing (NLP) and deep learning techniques to build a reliable, data-driven fake news detection system.",
-            technologies: ["Python", "TensorFlow", "LSTM", "NLP", "NLTK"],
-            github: "https://github.com/jeanemmanuelk/Fake_news_Detector_LSTM",
-            demo: "#",
-            image: "./images/fake_news_detector.png",
-            impact: [
-                "Achieved 92% classification accuracy on test dataset",
-                "Implemented custom attention mechanism to improve model interpretability",
-                "Processed and cleaned dataset of 50,000+ news articles",
-                "Deployed as Flask API for real-time classification"
-            ]
-        },
-        {
-            id: "ab-testing",
-            title: "Landing Page Engagement A/B Testing",
-            description: "Analyzed user engagement across two landing pages (Page A vs. Page B) using time-on-page as a proxy metric for effectiveness. Applied a complete A/B testing workflow, including statistical testing, confidence intervals, bootstrapping, and power analysis.",
-            technologies: ["Python", "Pandas", "SciPy", "Matplotlib", "Jupyter"],
-            github: "https://github.com/jeanemmanuelk/page-engagement-ab-testing",
-            demo: "#",
-            image: "./images/ab_testing.png",
-            impact: [
-                "Identified statistically significant 27% improvement in Page B engagement",
-                "Calculated optimal sample size for future tests",
-                "Created automated reporting dashboard for stakeholders",
-                "Reduced testing cycle time by 40% through process optimization"
-            ]
-        },
-        {
-            id: "regressly",
-            title: "RegressLy (Automated Regression Analysis Tool)",
-            description: "RegressLy is a powerful and user-friendly regression analysis application designed to simplify data-driven decision-making for users of all technical backgrounds. Built with Python and Streamlit, RegressLy allows seamless data upload, model selection, and interactive visualization to generate actionable insights without needing advanced programming skills.",
-            technologies: ["Python", "Streamlit", "Scikit-learn", "Pandas", "Plotly"],
-            github: "https://github.com/jeanemmanuelk/RegressLy",
-            demo: "#",
-            image: "./images/regressly.png",
-            impact: [
-                "Enabled non-technical users to perform complex regression analysis",
-                "Reduced model development time by 75% for common use cases",
-                "Integrated 8 different regression algorithms with automated selection",
-                "Deployed as web app with interactive visualizations"
-            ]
-        },
-        {
-            id: "resume-matcher",
-            title: "Resume MatchMate",
-            description: "An innovative web application designed to streamline the job application process. It utilizes advanced NLP techniques to match resumes with job descriptions, providing users with a compatibility score.",
-            technologies: ["Python", "NLTK", "spaCy", "Flask", "JavaScript"],
-            github: "https://github.com/jeanemmanuelk/Resume-MatchMate",
-            demo: "#",
-            image: "./images/resume_matchmate.webp",
-            impact: [
-                "Developed custom similarity scoring algorithm with 89% accuracy",
-                "Processed 1000+ resume/job description pairs",
-                "Reduced hiring manager screening time by 60%",
-                "Implemented PDF parsing and text extraction"
-            ]
-        },
-        {
-            id: "spam-detector",
-            title: "SMS Spam Detector",
-            description: "Developed an NLP-based machine learning model to classify text messages into 'spam' or 'ham' (non-spam). Utilized the Naive Bayes classifier and fine-tuned it through hyperparameter optimization, achieving 98% accuracy in spam detection.",
-            technologies: ["Python", "NLTK", "Scikit-learn", "Pandas", "Flask"],
-            github: "https://github.com/jeanemmanuelk/Advanced-SMS-Spam-Filter",
-            demo: "#",
-            image: "./images/smsspamdet.jpeg",
-            impact: [
-                "Achieved 98% classification accuracy on test data",
-                "Reduced false positives by 40% through feature engineering",
-                "Deployed as real-time filtering API",
-                "Processed 10,000+ SMS messages for training"
-            ]
-        },
-        {
-            id: "emotion-detector",
-            title: "Facial Emotion Detector",
-            description: "This project leverages deep learning to analyze and interpret real-time facial emotions from 48x48 pixel grayscale images. It features a custom-built CNN model for emotion detection, catering to dynamic content adaptation based on the user's emotional state.",
-            technologies: ["Python", "TensorFlow", "OpenCV", "Keras", "CNN"],
-            github: "https://github.com/jeanemmanuelk/Facial-Emotion-Detection",
-            demo: "#",
-            image: "./images/facial_det_proj.png",
-            impact: [
-                "Built CNN model with 75% accuracy on FER-2013 dataset",
-                "Implemented real-time video processing pipeline",
-                "Reduced model size by 60% through quantization",
-                "Classified 7 distinct emotional states"
-            ]
-        }
-    ];
-    
-    // Render projects
-    const projectsGrid = document.getElementById('projectsGrid');
-    
-    projects.forEach(project => {
-        const card = document.createElement('div');
-        card.className = 'project-card';
-        card.setAttribute('data-project', project.id);
-        
-        card.innerHTML = `
-            <div class="project-thumbnail">
-                <img src="${project.image}" alt="${project.title}" loading="lazy">
-            </div>
-            <div class="project-info">
-                <h3>${project.title}</h3>
-                <div class="tech-tags">
-                    ${project.technologies.slice(0, 3).map(tech => `<span>${tech}</span>`).join('')}
-                    ${project.technologies.length > 3 ? `<span>+${project.technologies.length - 3}</span>` : ''}
-                </div>
-            </div>
-        `;
-        
-        projectsGrid.appendChild(card);
-    });
-    
-    // Project modal functionality
-    const modal = document.getElementById('project-modal');
-    
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const projectId = this.dataset.project;
-            const project = projects.find(p => p.id === projectId);
-            
-            if (!project) return;
-            
-            // Update modal content
-            document.getElementById('modal-title').textContent = project.title;
-            document.getElementById('modal-description').textContent = project.description;
-            document.getElementById('modal-image').src = project.image;
-            document.getElementById('modal-image').alt = project.title;
-            document.getElementById('github-link').href = project.github;
-            
-            // Update technologies
-            const techContainer = document.getElementById('modal-tech');
-            techContainer.innerHTML = '';
-            project.technologies.forEach(tech => {
-                const tag = document.createElement('span');
-                tag.className = 'skill-tag';
-                tag.textContent = tech;
-                techContainer.appendChild(tag);
-            });
-            
-            // Update impact points
-            const impactList = document.getElementById('modal-impact');
-            impactList.innerHTML = '';
-            project.impact.forEach(point => {
-                const li = document.createElement('li');
-                li.textContent = point;
-                impactList.appendChild(li);
-            });
-            
-            // Show modal
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-    
-    // Close modal
-    document.querySelector('.close').addEventListener('click', function() {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-    
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-    
-    // Animate elements on scroll
-    function animateOnScroll() {
-        const elements = document.querySelectorAll('.skill-fill, .about-card, .project-card');
-        
-        elements.forEach(el => {
-            const elementPosition = el.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            
-            if (elementPosition < screenPosition) {
-                el.classList.add('animate');
-            }
-        });
-    }
-    
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Run once on load
-    
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // Contact form submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = this;
-            const msgDiv = document.getElementById('contactMsg');
-            msgDiv.textContent = "Sending...";
-            
-            fetch(form.action, {
-                method: "POST",
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            })
-            .then(response => {
-                if (response.ok) {
-                    msgDiv.textContent = "Thank you for reaching out! I'll get back to you soon.";
-                    form.reset();
-                } else {
-                    msgDiv.textContent = "Oops! Something went wrong. Please try again later.";
-                }
-            })
-            .catch(() => {
-                msgDiv.textContent = "Oops! Something went wrong. Please try again later.";
-            });
-        });
-    }
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-    
-    // Initialize skill bars animation
-    function animateSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-fill');
-        
-        skillBars.forEach(bar => {
-            const width = bar.getAttribute('data-width');
-            bar.style.width = width;
-        });
-    }
-    
-    animateSkillBars();
-});
+/* ============================================
+   PORTFOLIO — MAIN JS
+   ============================================ */
 
-// Resume Preview Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const resumeEmbed = document.getElementById('resumeEmbed');
-    const downloadBtn = document.getElementById('downloadResume');
-    const expandBtn = document.getElementById('expandResume');
-    const resumeModal = document.getElementById('resumeModal');
-    
-    // Embed the PDF preview (using PDF.js or native browser PDF viewer)
-    function embedResume() {
-        // Replace with your actual resume PDF path
-        const resumeUrl = './resume.pdf';
-        
-        // Modern browsers can display PDFs natively with <embed>
-        resumeEmbed.innerHTML = `
-            <embed src="${resumeUrl}#toolbar=0&navpanes=0&scrollbar=0" 
-                   type="application/pdf" 
-                   width="100%" 
-                   height="100%">
-        `;
-        
-        // Alternative using PDF.js if you need more control:
-        // initPDFJSViewer(resumeUrl);
-    }
-    
-    // Download functionality
-    downloadBtn.addEventListener('click', function() {
-        const link = document.createElement('a');
-        link.href = './resume.pdf';
-        link.download = 'Jean-Emmanuel-Kouadio-Resume.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    });
-    
-    // Fullscreen view
-    expandBtn.addEventListener('click', function() {
-        const iframe = document.getElementById('fullResume');
-        iframe.src = './resume.pdf#toolbar=0&navpanes=0';
-        resumeModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-    
-    // Close modal
-    resumeModal.querySelector('.close').addEventListener('click', function() {
-        resumeModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-    
-    // Initialize the preview
-    embedResume();
-});
+// ——— Theme ———
 
-/* Optional: If you want to use PDF.js for better rendering control
-function initPDFJSViewer(pdfUrl) {
-    // Load PDF.js library dynamically
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js';
-    script.onload = function() {
-        // Set worker path
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 
-            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
-        
-        // Load the PDF
-        pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
-            pdf.getPage(1).then(function(page) {
-                const viewport = page.getViewport({ scale: 1.5 });
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                
-                document.getElementById('resumeEmbed').innerHTML = '';
-                document.getElementById('resumeEmbed').appendChild(canvas);
-                
-                page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                });
-            });
-        });
-    };
-    document.head.appendChild(script);
+const THEME_KEY    = 'portfolio-theme';
+const html         = document.documentElement;
+const themeToggle  = document.getElementById('themeToggle');
+
+function getSystemTheme() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
-*/
+
+function getEffectiveTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  return saved || getSystemTheme();
+}
+
+function updateToggleIcon(effective) {
+  const icon = themeToggle.querySelector('i');
+  if (effective === 'dark') {
+    icon.className = 'fas fa-sun';
+    themeToggle.setAttribute('aria-label', 'Switch to light mode');
+  } else {
+    icon.className = 'fas fa-moon';
+    themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+  }
+}
+
+function applyTheme(theme, animate) {
+  if (animate) {
+    html.classList.add('theme-switching');
+    setTimeout(() => html.classList.remove('theme-switching'), 350);
+  }
+  html.setAttribute('data-theme', theme);
+  updateToggleIcon(theme);
+}
+
+themeToggle.addEventListener('click', () => {
+  const next = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
+  localStorage.setItem(THEME_KEY, next);
+  applyTheme(next, true);
+});
+
+// Sync when system preference changes (only if user hasn't manually picked)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  if (!localStorage.getItem(THEME_KEY)) {
+    applyTheme(e.matches ? 'dark' : 'light', true);
+  }
+});
+
+// Init icon to match whatever the inline script already applied
+updateToggleIcon(getEffectiveTheme());
+
+// ——— Project Data ———
+
+const projects = [
+  {
+    id: 1,
+    title: 'Bank Credit Risk Modeling',
+    category: 'Machine Learning',
+    desc: 'Predictive model assessing credit default risk using ensemble methods and class imbalance handling.',
+    fullDesc: 'End-to-end credit risk assessment system leveraging Random Forest with SMOTE oversampling to handle class imbalance. Includes comprehensive EDA, feature engineering, and a full model validation pipeline.',
+    tech: ['Python', 'Scikit-Learn', 'Pandas', 'SMOTE', 'Random Forest'],
+    impact: [
+      'ROC-AUC score of ~0.90 with Random Forest classifier',
+      'SMOTE technique effectively handled class imbalance',
+      'Comprehensive EDA and feature importance analysis',
+    ],
+    image: 'images/credit_risk.png',
+    github: 'https://github.com/emmanuelkj5',
+  },
+  {
+    id: 2,
+    title: 'Azure Data Engineering Pipeline',
+    category: 'Data Engineering',
+    desc: 'End-to-end ETL pipeline on Azure with PySpark processing and interactive Power BI dashboard.',
+    fullDesc: 'Architected a complete cloud data pipeline on Microsoft Azure, processing large-scale datasets with PySpark transformations and delivering insights through an interactive Power BI dashboard.',
+    tech: ['Azure', 'PySpark', 'Power BI', 'ETL', 'Data Factory'],
+    impact: [
+      'End-to-end ETL workflow orchestrated on Microsoft Azure',
+      '50% reduction in analysis time through automation',
+      'Interactive Power BI dashboard for real-time stakeholder insights',
+    ],
+    image: 'images/Olympic flowchart.png',
+    github: 'https://github.com/emmanuelkj5',
+  },
+  {
+    id: 3,
+    title: 'Fake News Detector (LSTM)',
+    category: 'NLP / Deep Learning',
+    desc: 'LSTM-based classifier achieving 92% accuracy for fake news detection, deployed as a Flask API.',
+    fullDesc: 'Deep learning NLP pipeline using LSTM networks for fake news classification. Includes text preprocessing with NLTK, word embeddings, and a deployed Flask REST API for real-time inference.',
+    tech: ['TensorFlow', 'NLTK', 'Flask', 'LSTM', 'NLP'],
+    impact: [
+      '92% classification accuracy on test set',
+      'Real-time Flask API for text classification',
+      'Advanced text preprocessing with word embeddings',
+    ],
+    image: 'images/fake_news_detector.png',
+    github: 'https://github.com/emmanuelkj5',
+  },
+  {
+    id: 4,
+    title: 'Landing Page A/B Testing',
+    category: 'Statistical Analysis',
+    desc: 'Rigorous A/B test identifying a 27% conversion improvement via power analysis and bootstrapping.',
+    fullDesc: 'Comprehensive A/B testing analysis on landing page variants using statistical hypothesis testing, power analysis, and bootstrap resampling to ensure statistically valid and actionable conclusions.',
+    tech: ['Python', 'SciPy', 'Matplotlib', 'Statsmodels', 'Bootstrap'],
+    impact: [
+      '27% improvement in conversion rate identified',
+      'Power analysis ensured statistical validity before launch',
+      'Bootstrap resampling for robust confidence intervals',
+    ],
+    image: 'images/ab_testing.png',
+    github: 'https://github.com/emmanuelkj5',
+  },
+  {
+    id: 5,
+    title: 'RegressLy',
+    category: 'Data Tool',
+    desc: 'Interactive multi-algorithm regression analysis tool reducing analyst time by 75%.',
+    fullDesc: 'A user-friendly Streamlit web application enabling analysts to run, compare, and visualize 8 regression algorithms without writing code. Features automated preprocessing, model selection, and interactive Plotly visualizations.',
+    tech: ['Streamlit', 'Scikit-learn', 'Plotly', 'Pandas', 'Python'],
+    impact: [
+      '8 regression algorithms accessible in one unified interface',
+      '75% reduction in analyst time per regression task',
+      'Automated preprocessing and model comparison built-in',
+    ],
+    image: 'images/regressly.png',
+    github: 'https://github.com/emmanuelkj5',
+  },
+  {
+    id: 6,
+    title: 'Resume MatchMate',
+    category: 'NLP',
+    desc: 'NLP-powered resume-to-job matching system with 89% accuracy and PDF parsing.',
+    fullDesc: 'Intelligent resume screening tool using NLP to match resumes against job descriptions. Features PDF parsing, TF-IDF vectorization, cosine similarity scoring, and a JavaScript-powered front end for instant results.',
+    tech: ['NLP', 'Flask', 'JavaScript', 'TF-IDF', 'PDF Parsing'],
+    impact: [
+      '89% resume-to-job matching accuracy',
+      'Automated PDF parsing and text extraction',
+      'Significantly reduced manual screening time for HR teams',
+    ],
+    image: 'images/resume_matchmate.webp',
+    github: 'https://github.com/emmanuelkj5',
+  },
+  {
+    id: 7,
+    title: 'SMS Spam Detector',
+    category: 'Machine Learning',
+    desc: 'Real-time SMS spam classifier achieving 98% accuracy, deployed as a Flask REST API.',
+    fullDesc: 'SMS spam detection system using classical ML with NLTK text preprocessing and feature engineering. Achieves 98% classification accuracy and is deployed as a real-time Flask REST API for integration.',
+    tech: ['NLTK', 'Scikit-learn', 'Flask', 'Python', 'NLP'],
+    impact: [
+      '98% classification accuracy on held-out test set',
+      'Real-time filtering via REST API deployment',
+      'Efficient text preprocessing and bag-of-words pipeline',
+    ],
+    image: 'images/smsspamdet.jpeg',
+    github: 'https://github.com/emmanuelkj5',
+  },
+  {
+    id: 8,
+    title: 'Facial Emotion Detector',
+    category: 'Computer Vision',
+    desc: 'CNN-based real-time facial emotion recognition using TensorFlow and OpenCV on FER-2013.',
+    fullDesc: 'Convolutional neural network for real-time facial emotion recognition trained on the FER-2013 dataset. Integrates with OpenCV for live video processing and 7-class emotion classification in real time.',
+    tech: ['TensorFlow', 'OpenCV', 'CNN', 'Python', 'FER-2013'],
+    impact: [
+      '75% accuracy on FER-2013 benchmark dataset',
+      'Real-time video processing with OpenCV integration',
+      '7-class emotion classification (happy, sad, angry, etc.)',
+    ],
+    image: 'images/facial_det_proj.png',
+    github: 'https://github.com/emmanuelkj5',
+  },
+];
+
+// ——— Navigation ———
+
+const nav       = document.getElementById('nav');
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  hamburger.classList.toggle('active');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    hamburger.classList.remove('active');
+  });
+});
+
+// ——— Typing Animation ———
+
+const roles = [
+  'machine learning models',
+  'data pipelines',
+  'NLP systems',
+  'predictive analytics',
+  'intelligent solutions',
+];
+
+let roleIndex  = 0;
+let charIndex  = 0;
+let isDeleting = false;
+const roleEl   = document.getElementById('roleText');
+const SPEED    = { type: 65, delete: 38, pause: 2000, gap: 380 };
+
+function typeRole() {
+  const current = roles[roleIndex];
+  if (isDeleting) {
+    roleEl.textContent = current.slice(0, charIndex - 1);
+    charIndex--;
+  } else {
+    roleEl.textContent = current.slice(0, charIndex + 1);
+    charIndex++;
+  }
+
+  let delay = isDeleting ? SPEED.delete : SPEED.type;
+  if (!isDeleting && charIndex === current.length) {
+    delay = SPEED.pause;
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    roleIndex  = (roleIndex + 1) % roles.length;
+    delay = SPEED.gap;
+  }
+
+  setTimeout(typeRole, delay);
+}
+
+typeRole();
+
+// ——— Render Projects ———
+
+const grid = document.getElementById('projectsGrid');
+
+projects.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'project-card fade-up';
+  card.dataset.id = p.id;
+  card.innerHTML = `
+    <div class="project-card__header">
+      <span class="project-card__category">${p.category}</span>
+      <i class="fas fa-arrow-up-right-from-square project-card__arrow"></i>
+    </div>
+    <img src="${p.image}" alt="${p.title}" class="project-card__img" loading="lazy">
+    <h3 class="project-card__title">${p.title}</h3>
+    <p class="project-card__desc">${p.desc}</p>
+    <div class="project-card__tags">
+      ${p.tech.slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('')}
+    </div>
+  `;
+  card.addEventListener('click', () => openModal(p));
+  grid.appendChild(card);
+});
+
+// ——— Modal ———
+
+const modal        = document.getElementById('projectModal');
+const modalBody    = document.getElementById('modalBody');
+const modalClose   = document.getElementById('modalClose');
+const modalBackdrop = document.getElementById('modalBackdrop');
+
+function openModal(p) {
+  modalBody.innerHTML = `
+    <img src="${p.image}" alt="${p.title}" class="modal__img">
+    <div class="modal__category">${p.category}</div>
+    <h2 class="modal__title">${p.title}</h2>
+    <p class="modal__desc">${p.fullDesc}</p>
+    <div class="modal__impact-label">Key Results</div>
+    <div class="modal__impact">
+      ${p.impact.map(i => `<div class="modal__impact-item">${i}</div>`).join('')}
+    </div>
+    <div class="modal__tags">
+      ${p.tech.map(t => `<span class="tag tag--accent">${t}</span>`).join('')}
+    </div>
+    <a href="${p.github}" target="_blank" rel="noopener" class="modal__link">
+      View on GitHub <i class="fas fa-arrow-right"></i>
+    </a>
+  `;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ——— Scroll Animations ———
+
+const observer = new IntersectionObserver(
+  entries => entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  }),
+  { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+);
+
+// Observe all static fade-up elements
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Observe project cards after they're injected
+grid.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ——— Contact Form ———
+
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const original = submitBtn.textContent;
+  submitBtn.textContent = 'Sending…';
+  submitBtn.disabled = true;
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    });
+    if (res.ok) {
+      submitBtn.textContent = 'Message sent!';
+      form.reset();
+      setTimeout(() => {
+        submitBtn.textContent = original;
+        submitBtn.disabled = false;
+      }, 3500);
+    } else {
+      throw new Error('Network response not ok');
+    }
+  } catch {
+    submitBtn.textContent = 'Error — try again';
+    submitBtn.disabled = false;
+  }
+});
+
+// ——— Footer Year ———
+
+document.getElementById('year').textContent = new Date().getFullYear();

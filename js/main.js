@@ -69,7 +69,7 @@ const projects = [
       'Comprehensive EDA and feature importance analysis',
     ],
     image: 'images/credit_risk.png',
-    github: 'https://github.com/emmanuelkj5',
+    github: 'https://github.com/jeanemmanuelk/Credit_Risk_modeling',
   },
   {
     id: 2,
@@ -84,7 +84,7 @@ const projects = [
       'Interactive Power BI dashboard for real-time stakeholder insights',
     ],
     image: 'images/Olympic flowchart.png',
-    github: 'https://github.com/emmanuelkj5',
+    github: 'https://github.com/jeanemmanuelk/Olympic-azure-databricks-project',
   },
   {
     id: 3,
@@ -99,7 +99,7 @@ const projects = [
       'Advanced text preprocessing with word embeddings',
     ],
     image: 'images/fake_news_detector.png',
-    github: 'https://github.com/emmanuelkj5',
+    github: 'https://github.com/jeanemmanuelk/Fake_news_Detector_LSTM',
   },
   {
     id: 4,
@@ -114,7 +114,7 @@ const projects = [
       'Bootstrap resampling for robust confidence intervals',
     ],
     image: 'images/ab_testing.png',
-    github: 'https://github.com/emmanuelkj5',
+    github: 'https://github.com/jeanemmanuelk/page-engagement-ab-testing',
   },
   {
     id: 5,
@@ -129,7 +129,7 @@ const projects = [
       'Automated preprocessing and model comparison built-in',
     ],
     image: 'images/regressly.png',
-    github: 'https://github.com/emmanuelkj5',
+    github: 'https://github.com/jeanemmanuelk/RegressLy',
   },
   {
     id: 6,
@@ -144,7 +144,7 @@ const projects = [
       'Significantly reduced manual screening time for HR teams',
     ],
     image: 'images/resume_matchmate.webp',
-    github: 'https://github.com/emmanuelkj5',
+    github: 'https://github.com/jeanemmanuelk/Resume-MatchMate',
   },
   {
     id: 7,
@@ -159,7 +159,7 @@ const projects = [
       'Efficient text preprocessing and bag-of-words pipeline',
     ],
     image: 'images/smsspamdet.jpeg',
-    github: 'https://github.com/emmanuelkj5',
+    github: 'https://github.com/jeanemmanuelk/Advanced-SMS-Spam-Filter',
   },
   {
     id: 8,
@@ -174,7 +174,7 @@ const projects = [
       '7-class emotion classification (happy, sad, angry, etc.)',
     ],
     image: 'images/facial_det_proj.png',
-    github: 'https://github.com/emmanuelkj5',
+    github: 'https://github.com/jeanemmanuelk/Facial-Emotion-Detection',
   },
 ];
 

@@ -57,6 +57,21 @@ updateToggleIcon(getEffectiveTheme());
 
 const projects = [
   {
+    id: 9,
+    title: 'Butterfly Species Classifier',
+    category: 'Computer Vision',
+    desc: 'CNN vs. transfer learning comparison across 75 butterfly species, reaching 91.6% validation accuracy.',
+    fullDesc: 'Built and compared three approaches to image classification: a CNN trained from scratch, a pretrained ResNet18 with a frozen backbone, and a fine-tuned version with the final ResNet block unfrozen. Diagnosed overfitting in the initial CNN and resolved it with data augmentation, normalization, and dropout before moving to transfer learning for a stronger baseline.',
+    tech: ['PyTorch', 'ResNet18', 'CNN', 'Transfer Learning', 'Computer Vision'],
+    impact: [
+      '91.6% validation accuracy after fine-tuning, up from ~63% with a CNN trained from scratch',
+      'Diagnosed and resolved overfitting using data augmentation, normalization, and dropout',
+      'Compared three training strategies: custom CNN, frozen-backbone transfer learning, and layer4 fine-tuning',
+    ],
+    image: 'images/butterfly_classifier.png',
+    github: 'https://github.com/jeanemmanuelk/cnn-vs-transfer-learning-fo-butterfly-image-classification',
+  },
+  {
     id: 1,
     title: 'Bank Credit Risk Modeling',
     category: 'Machine Learning',
@@ -243,26 +258,62 @@ typeRole();
 
 // ——— Render Projects ———
 
-const grid = document.getElementById('projectsGrid');
+const grid    = document.getElementById('projectsGrid');
+const filters = document.getElementById('projectFilters');
 
-projects.forEach(p => {
+// Normalizes category labels that describe the same filter bucket
+// (e.g. "NLP / Deep Learning" and "NLP") without changing the card's display text.
+const FILTER_ALIASES = { 'NLP / Deep Learning': 'NLP' };
+const FILTER_ORDER = ['All', 'Computer Vision', 'Machine Learning', 'NLP', 'Data Engineering', 'Statistical Analysis', 'Data Tool'];
+
+function filterOf(p) {
+  return FILTER_ALIASES[p.category] || p.category;
+}
+
+function buildCard(p, isFeatured) {
   const card = document.createElement('div');
-  card.className = 'project-card fade-up';
+  card.className = `project-card fade-up${isFeatured ? ' project-card--featured' : ''}`;
   card.dataset.id = p.id;
+  card.dataset.filter = filterOf(p);
+  const tagCount = isFeatured ? 5 : 3;
   card.innerHTML = `
-    <div class="project-card__header">
+    <div class="project-card__media">
       <span class="project-card__category">${p.category}</span>
       <i class="fas fa-arrow-up-right-from-square project-card__arrow"></i>
+      <img src="${p.image}" alt="${p.title}" class="project-card__img" loading="lazy">
     </div>
-    <img src="${p.image}" alt="${p.title}" class="project-card__img" loading="lazy">
-    <h3 class="project-card__title">${p.title}</h3>
-    <p class="project-card__desc">${p.desc}</p>
-    <div class="project-card__tags">
-      ${p.tech.slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('')}
+    <div class="project-card__body">
+      <h3 class="project-card__title">${p.title}</h3>
+      <p class="project-card__desc">${p.desc}</p>
+      <div class="project-card__tags">
+        ${p.tech.slice(0, tagCount).map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
     </div>
   `;
   card.addEventListener('click', () => openModal(p));
-  grid.appendChild(card);
+  return card;
+}
+
+const [featuredProject, ...restProjects] = projects;
+grid.appendChild(buildCard(featuredProject, true));
+restProjects.forEach(p => grid.appendChild(buildCard(p, false)));
+
+const cardEls = Array.from(grid.querySelectorAll('.project-card'));
+
+FILTER_ORDER.forEach(label => {
+  const pill = document.createElement('button');
+  pill.className = `filter-pill${label === 'All' ? ' filter-pill--active' : ''}`;
+  pill.textContent = label;
+  pill.dataset.filter = label;
+  pill.addEventListener('click', () => {
+    filters.querySelectorAll('.filter-pill').forEach(el => el.classList.remove('filter-pill--active'));
+    pill.classList.add('filter-pill--active');
+    cardEls.forEach(card => {
+      const matches = label === 'All' || card.dataset.filter === label;
+      card.classList.toggle('is-dimmed', !matches);
+    });
+  });
+  filters.appendChild(pill);
 });
 
 // ——— Modal ———

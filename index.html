@@ -1,291 +1,244 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Jean-Emmanuel Kouadio — Data Scientist & Data Analyst specializing in machine learning, business intelligence, and data-driven solutions.">
-  <title>Jean-Emmanuel Kouadio | Data Scientist & Analyst</title>
-  <link rel="icon" type="image/png" href="images/icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="css/main.css">
-  <!-- Prevent flash of wrong theme -->
-  <script>
-    (function() {
-      var saved = localStorage.getItem('portfolio-theme');
-      var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', saved || system);
-    })();
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jean-Emmanuel Kouadio · AI for Healthcare</title>
+<meta name="description" content="Jean-Emmanuel Kouadio, incoming Computer Science Ph.D. student researching AI for healthcare. Selected research, projects, and publications.">
+<meta property="og:title" content="Jean-Emmanuel Kouadio · AI for Healthcare">
+<meta property="og:description" content="Incoming Computer Science Ph.D. student researching AI for healthcare.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="images/icon.png">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FBFBFA;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--accent,#4F6F7A)}
+a:focus-visible{outline:2px solid var(--accent,#4F6F7A);outline-offset:4px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+::selection{background:#1D1D1F;color:#FBFBFA}
+</style>
 </head>
 <body>
+<div id="root" style="--accent:#4F6F7A;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',Helvetica,sans-serif;color:#1D1D1F;background:#FBFBFA;letter-spacing:-0.011em;line-height:1.5">
 
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="#home" class="nav__logo">JEK</a>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="#work" class="nav__link">Work</a></li>
-        <li><a href="#skills" class="nav__link">Skills</a></li>
-        <li><a href="#about" class="nav__link">About</a></li>
-        <li><a href="#contact" class="nav__link">Contact</a></li>
-      </ul>
-      <div class="nav__actions">
-        <a href="Jean_Emmanuel_Kouadio_resume.pdf" download class="btn btn--outline btn--sm">Resume</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <i class="fas fa-moon"></i>
-        </button>
-        <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <main>
-
-    <!-- Hero -->
-    <section id="home" class="hero">
-      <div class="hero__bg"></div>
-      <div class="container hero__content">
-        <div class="hero__tag">
-          <span class="hero__tag-dot"></span>
-          Open to opportunities
-        </div>
-        <h1 class="hero__name">Jean-Emmanuel<br>Kouadio</h1>
-        <div class="hero__role">
-          <span class="hero__role-prefix">I build&nbsp;</span>
-          <span class="hero__role-dynamic" id="roleText">machine learning models</span>
-          <span class="hero__cursor">|</span>
-        </div>
-        <p class="hero__tagline">Data Scientist &amp; Analyst turning raw data<br class="hero__br"> into predictive models, BI dashboards, and actionable business insights.</p>
-        <div class="hero__cta">
-          <a href="#work" class="btn btn--primary">View my work</a>
-          <a href="#contact" class="btn btn--ghost">Get in touch</a>
-        </div>
-        <div class="hero__social">
-          <a href="https://github.com/jeanemmanuelk" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/j-emmanuel-k/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.kaggle.com/jeanemmanuelkouadio" target="_blank" rel="noopener" aria-label="Kaggle"><i class="fab fa-kaggle"></i></a>
-        </div>
-      </div>
-      <div class="hero__scroll-indicator">
-        <div class="hero__scroll-line"></div>
-      </div>
-    </section>
-
-    <!-- Work -->
-    <section id="work" class="section">
-      <div class="container">
-        <div class="section__header fade-up">
-          <span class="section__label">Portfolio</span>
-          <h2 class="section__title">Selected Work</h2>
-          <p class="section__desc">A collection of machine learning, data engineering, and analytical projects.</p>
-        </div>
-        <div class="projects__filters fade-up" id="projectFilters"></div>
-        <div class="projects__grid" id="projectsGrid"></div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="section section--alt">
-      <div class="container">
-        <div class="section__header fade-up">
-          <span class="section__label">Expertise</span>
-          <h2 class="section__title">Skills &amp; Tools</h2>
-        </div>
-        <div class="skills__grid">
-          <div class="skills__category fade-up">
-            <h3 class="skills__cat-title">Languages</h3>
-            <div class="skills__tags">
-              <span class="tag">Python</span>
-              <span class="tag">SQL</span>
-              <span class="tag">PySpark</span>
-              <span class="tag">JavaScript</span>
-            </div>
-          </div>
-          <div class="skills__category fade-up">
-            <h3 class="skills__cat-title">ML &amp; Libraries</h3>
-            <div class="skills__tags">
-              <span class="tag">PyTorch</span>
-              <span class="tag">Scikit-learn</span>
-              <span class="tag">TensorFlow</span>
-              <span class="tag">XGBoost</span>
-              <span class="tag">OpenCV</span>
-              <span class="tag">Pandas</span>
-              <span class="tag">NumPy</span>
-              <span class="tag">NLTK</span>
-            </div>
-          </div>
-          <div class="skills__category fade-up">
-            <h3 class="skills__cat-title">Cloud &amp; Data</h3>
-            <div class="skills__tags">
-              <span class="tag">Azure Databricks</span>
-              <span class="tag">Azure Data Factory</span>
-              <span class="tag">SQL Server</span>
-              <span class="tag">Oracle</span>
-            </div>
-          </div>
-          <div class="skills__category fade-up">
-            <h3 class="skills__cat-title">Analytics &amp; BI</h3>
-            <div class="skills__tags">
-              <span class="tag">Power BI</span>
-              <span class="tag">Tableau</span>
-              <span class="tag">DAX</span>
-              <span class="tag">Excel</span>
-              <span class="tag">Plotly</span>
-              <span class="tag">Matplotlib</span>
-              <span class="tag">Streamlit</span>
-              <span class="tag">Flask</span>
-              <span class="tag">SciPy</span>
-              <span class="tag">Statsmodels</span>
-            </div>
-          </div>
-          <div class="skills__category fade-up">
-            <h3 class="skills__cat-title">Tools</h3>
-            <div class="skills__tags">
-              <span class="tag">Git</span>
-              <span class="tag">VS Code</span>
-              <span class="tag">Jupyter Notebook</span>
-            </div>
-          </div>
-          <div class="skills__category skills__category--wide fade-up">
-            <h3 class="skills__cat-title">Core Competencies</h3>
-            <div class="skills__tags">
-              <span class="tag tag--accent">Machine Learning</span>
-              <span class="tag tag--accent">Deep Learning</span>
-              <span class="tag tag--accent">Computer Vision</span>
-              <span class="tag tag--accent">Transfer Learning</span>
-              <span class="tag tag--accent">NLP</span>
-              <span class="tag tag--accent">A/B Testing</span>
-              <span class="tag tag--accent">Feature Engineering</span>
-              <span class="tag tag--accent">Model Validation</span>
-              <span class="tag tag--accent">ETL Pipelines</span>
-              <span class="tag tag--accent">Statistical Analysis</span>
-              <span class="tag tag--accent">Time Series</span>
-              <span class="tag tag--accent">Predictive Modeling</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="about__grid">
-          <div class="about__text fade-up">
-            <span class="section__label">About me</span>
-            <h2 class="section__title">The person<br>behind the data</h2>
-            <p>I'm a Data Scientist and Analyst with an M.S. in Data Analytics &amp; Information Systems (GPA 3.83). I've built churn prediction models, pay-equity risk flags, and end-to-end cloud data pipelines — with real production impact across multiple organizations.</p>
-            <p>My work spans the full analytics stack: from training classification models and designing ETL pipelines to delivering Power BI dashboards that drive executive decisions. I combine statistical rigor with practical engineering to ship solutions that actually get used.</p>
-            <div class="about__education">
-              <div class="about__edu-item">
-                <i class="fas fa-graduation-cap"></i>
-                <div>
-                  <strong>M.S. Data Analytics &amp; Information Systems</strong>
-                  <span>Shepherd University — GPA: 3.83/4.0 · Dec 2024</span>
-                </div>
-              </div>
-              <div class="about__edu-item">
-                <i class="fas fa-graduation-cap"></i>
-                <div>
-                  <strong>MBA</strong>
-                  <span>Shepherd University — Dec 2024</span>
-                </div>
-              </div>
-              <div class="about__edu-item">
-                <i class="fas fa-graduation-cap"></i>
-                <div>
-                  <strong>B.S. Computer Engineering</strong>
-                  <span>Shepherd University — GPA: 3.45/4.0 · Dec 2021</span>
-                </div>
-              </div>
-            </div>
-            <div class="about__actions">
-              <a href="Jean_Emmanuel_Kouadio_resume.pdf" download class="btn btn--primary">
-                <i class="fas fa-download"></i> Download Resume
-              </a>
-              <a href="#contact" class="btn btn--ghost">Get in touch</a>
-            </div>
-          </div>
-          <div class="about__visual fade-up">
-            <div class="about__img-wrapper">
-              <img src="images/profile-pic (5).png" alt="Jean-Emmanuel Kouadio">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section section--alt">
-      <div class="container">
-        <div class="contact__grid">
-          <div class="contact__info fade-up">
-            <span class="section__label">Contact</span>
-            <h2 class="section__title">Let's work<br>together</h2>
-            <p>I'm currently open to full-time positions, contract work, and interesting collaborations. If you're building something data-driven, let's talk.</p>
-            <div class="contact__details">
-              <a href="mailto:emmanuelkj5@gmail.com" class="contact__item">
-                <span class="contact__icon"><i class="fas fa-envelope"></i></span>
-                <span>emmanuelkj5@gmail.com</span>
-              </a>
-              <a href="tel:+16812830298" class="contact__item">
-                <span class="contact__icon"><i class="fas fa-phone"></i></span>
-                <span>(681) 283-0298</span>
-              </a>
-              <a href="https://www.linkedin.com/in/j-emmanuel-k/" target="_blank" rel="noopener" class="contact__item">
-                <span class="contact__icon"><i class="fab fa-linkedin-in"></i></span>
-                <span>jean-emmanuel-kouadio</span>
-              </a>
-            </div>
-          </div>
-          <form class="contact__form fade-up" id="contactForm" action="https://formsubmit.co/emmanuelkj5@gmail.com" method="POST">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="Portfolio Contact">
-            <div class="form__group">
-              <input type="text" name="name" id="name" placeholder="Your name" required>
-            </div>
-            <div class="form__group">
-              <input type="email" name="email" id="email" placeholder="Your email" required>
-            </div>
-            <div class="form__group">
-              <textarea name="message" id="message" rows="5" placeholder="Tell me about your project or opportunity..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span class="footer__copy">&copy; <span id="year"></span> Jean-Emmanuel Kouadio</span>
-      <div class="footer__social">
-        <a href="https://github.com/jeanemmanuelk" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/j-emmanuel-k/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.kaggle.com/jeanemmanuelkouadio" target="_blank" rel="noopener" aria-label="Kaggle"><i class="fab fa-kaggle"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Project Modal -->
-  <div class="modal" id="projectModal" role="dialog" aria-modal="true">
-    <div class="modal__backdrop" id="modalBackdrop"></div>
-    <div class="modal__panel" id="modalPanel">
-      <button class="modal__close" id="modalClose" aria-label="Close modal">
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="modal__body" id="modalBody"></div>
+<nav style="position:sticky;top:0;z-index:10;background:rgba(251,251,250,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,0.06)">
+  <div style="max-width:1040px;margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <a href="#top" style="font-size:15px;font-weight:600;letter-spacing:-0.01em">J-E. Kouadio</a>
+    <div style="display:flex;gap:clamp(12px,3vw,28px);font-size:13px;color:#424245">
+      <a href="#about" data-nav="about" style="transition:color .3s">About</a>
+      <a href="#work" data-nav="work" style="transition:color .3s">Work</a>
+      <a href="#education" data-nav="education" style="transition:color .3s">Education</a>
+      <a href="#contact" data-nav="contact" style="transition:color .3s">Contact</a>
     </div>
   </div>
+  <div data-progress="" style="position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left"></div>
+</nav>
 
-  <script src="js/main.js"></script>
+<header id="top" data-hero="" data-screen-label="Hero" style="will-change:transform,opacity;transform-origin:center top;max-width:1040px;margin:0 auto;padding:clamp(72px,12vh,128px) 24px clamp(64px,10vh,112px)">
+  <p data-reveal="" style="margin:0 0 20px;font-size:17px;font-weight:500;color:var(--accent)">Incoming Ph.D. Student, Computer Science</p>
+  <h1 data-reveal="" style="margin:0;font-size:clamp(36px,5vw,60px);line-height:1.05;font-weight:700;letter-spacing:-0.03em">Jean-Emmanuel Kouadio</h1>
+  <p data-reveal="" style="margin:32px 0 0;max-width:640px;font-size:clamp(22px,2.6vw,32px);line-height:1.25;font-weight:500;letter-spacing:-0.02em;color:#6E6E73;text-wrap:pretty">AI researcher focused on healthcare, building models that are measured carefully and understood fully.</p>
+</header>
+
+<section id="about" data-screen-label="About" style="border-top:1px solid #E8E8EA">
+  <div style="max-width:1040px;margin:0 auto;padding:clamp(72px,12vh,128px) 24px;display:flex;flex-wrap:wrap;gap:40px 64px">
+    <div style="flex:0 0 180px;display:flex;flex-direction:column;gap:24px">
+      <p data-reveal="" style="margin:0;font-size:14px;font-weight:600;color:#6E6E73">About</p>
+      <div data-reveal="" style="width:180px;height:180px">
+        <img src="images/profile-pic%20(5).png" alt="Portrait of Jean-Emmanuel Kouadio" width="180" height="180" style="width:180px;height:180px;object-fit:cover;border-radius:50%;background:#EDEDEF;display:block">
+      </div>
+    </div>
+    <div style="flex:1 1 520px;max-width:720px">
+      <p data-reveal="" style="margin:0;font-size:clamp(24px,3vw,36px);line-height:1.25;font-weight:600;letter-spacing:-0.022em;text-wrap:pretty">I trained as an engineer, then as an analyst. Now I'm turning both toward one question: how machine learning can be made trustworthy enough for medicine.</p>
+      <p data-reveal="" style="margin:32px 0 0;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">I hold a B.S. in Computer Engineering and an M.S. in Data Analytics &amp; Information Systems from Shepherd University. In Spring 2027 I begin a Ph.D. in Computer Science, where my research will center on artificial intelligence for healthcare.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Research focus" style="background:#111112;color:#F5F5F7">
+  <div style="max-width:1040px;margin:0 auto;padding:clamp(88px,14vh,144px) 24px">
+    <p data-reveal="" style="margin:0 0 28px;font-size:14px;font-weight:600;color:#A1A1A6">Research focus</p>
+    <p style="margin:0;max-width:900px;font-size:clamp(30px,4.4vw,54px);line-height:1.12;font-weight:600;letter-spacing:-0.03em;text-wrap:pretty"><span data-scrub="" style="transition:color .25s">Clinical data is scarce, imbalanced, and high‑stakes.</span> <span data-scrub="" style="transition:color .25s">I study how to learn well from it</span> <span data-scrub="" style="transition:color .25s">through transfer learning, principled evaluation,</span> <span data-scrub="" style="transition:color .25s">and models whose behavior can be explained to the people who rely on them.</span></p>
+  </div>
+</section>
+
+<section id="work" data-screen-label="Selected work">
+  <div style="max-width:1040px;margin:0 auto;padding:clamp(88px,13vh,136px) 24px 0">
+    <p data-reveal="" style="margin:0 0 16px;font-size:14px;font-weight:600;color:#6E6E73">Selected work</p>
+    <h2 data-reveal="" style="margin:0;font-size:clamp(40px,6vw,72px);line-height:1.05;font-weight:700;letter-spacing:-0.035em">Three studies.</h2>
+  </div>
+
+  <article data-screen-label="Case — Butterfly" style="max-width:1040px;margin:0 auto;padding:clamp(64px,11vh,112px) 24px;border-bottom:1px solid #E8E8EA">
+    <p data-reveal="" style="margin:0 0 14px;font-size:14px;color:var(--accent);font-weight:500">01 · Computer vision · Transfer learning</p>
+    <h3 data-reveal="" style="margin:0;max-width:820px;font-size:clamp(30px,4vw,48px);line-height:1.1;font-weight:700;letter-spacing:-0.03em;text-wrap:balance">CNN vs. transfer learning for butterfly classification</h3>
+    <div data-reveal="" style="margin:44px 0 52px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:32px 64px">
+      <div>
+        <div style="font-size:clamp(72px,11vw,128px);line-height:0.9;font-weight:700;letter-spacing:-0.045em"><span data-count="91.6" style="font-variant-numeric:tabular-nums">91.6</span><span style="font-size:0.45em;letter-spacing:-0.02em">%</span></div>
+        <p style="margin:14px 0 0;font-size:15px;color:#6E6E73">Top‑1 accuracy, 75 species · 6,499 images</p>
+      </div>
+      <div style="flex:1 1 360px;display:flex;flex-direction:column;gap:14px;padding-bottom:8px">
+        <div style="display:flex;align-items:center;gap:16px;font-size:14px"><span style="flex:0 0 150px;color:#6E6E73">CNN from scratch</span><div style="flex:1;height:6px;background:#EDEDEF;border-radius:3px"><div data-bar="" style="width:63%;height:100%;background:#C7C7CC;border-radius:3px;transform-origin:left"></div></div><span style="flex:0 0 48px;text-align:right;font-variant-numeric:tabular-nums">~63%</span></div>
+        <div style="display:flex;align-items:center;gap:16px;font-size:14px"><span style="flex:0 0 150px;color:#6E6E73">ResNet18, frozen</span><div style="flex:1;height:6px;background:#EDEDEF;border-radius:3px"><div data-bar="" style="width:84.5%;height:100%;background:#8E8E93;border-radius:3px;transform-origin:left"></div></div><span style="flex:0 0 48px;text-align:right;font-variant-numeric:tabular-nums">84.5%</span></div>
+        <div style="display:flex;align-items:center;gap:16px;font-size:14px;font-weight:600"><span style="flex:0 0 150px">ResNet18, fine‑tuned</span><div style="flex:1;height:6px;background:#EDEDEF;border-radius:3px"><div data-bar="" style="width:91.6%;height:100%;background:var(--accent);border-radius:3px;transform-origin:left"></div></div><span style="flex:0 0 48px;text-align:right;font-variant-numeric:tabular-nums">91.6%</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:40px">
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Outcome</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">Fine‑tuning a pretrained ResNet18 closed most of the gap a from‑scratch network could not: a 29‑point gain over the baseline, and 7 points beyond a frozen feature extractor.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Method</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">A controlled comparison: the same splits, augmentation, and training budget across all three models, so the only variable was how much prior knowledge the network started with and which layers were allowed to learn. Most of the work was debugging: reading train/validation curves to separate overfitting from underfitting, matching input normalization to the pretrained weights, and tuning learning rates so fine‑tuning adapted the backbone without erasing it.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Why it matters</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">Fine‑grained, many‑class, few‑examples‑per‑class is the shape of most medical imaging problems. Knowing when to freeze, when to fine‑tune, and how to verify the difference is groundwork for that setting.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><span style="flex:0 0 180px"></span><div style="flex:1 1 460px"><a href="https://github.com/jeanemmanuelk/cnn-vs-transfer-learning-for-butterfly-image-classification" target="_blank" rel="noopener" data-hover="color:var(--accent)" style="font-size:15px;font-weight:500;color:#1D1D1F;transition:color .3s">View code ↗</a></div></div>
+    </div>
+  </article>
+
+  <article data-screen-label="Case — Fake news" style="max-width:1040px;margin:0 auto;padding:clamp(64px,11vh,112px) 24px;border-bottom:1px solid #E8E8EA">
+    <p data-reveal="" style="margin:0 0 14px;font-size:14px;color:var(--accent);font-weight:500">02 · Natural language processing</p>
+    <h3 data-reveal="" style="margin:0;max-width:820px;font-size:clamp(30px,4vw,48px);line-height:1.1;font-weight:700;letter-spacing:-0.03em;text-wrap:balance">Fake news detection with LSTMs</h3>
+    <div data-reveal="" style="margin:44px 0 52px">
+      <div style="font-size:clamp(72px,11vw,128px);line-height:0.9;font-weight:700;letter-spacing:-0.045em"><span data-count="99" style="font-variant-numeric:tabular-nums">99</span><span style="font-size:0.45em;letter-spacing:-0.02em">%</span></div>
+      <p style="margin:14px 0 0;font-size:15px;color:#6E6E73">Test accuracy · TensorFlow / Keras</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:40px">
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Outcome</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">A recurrent classifier that separates real from fabricated articles with 99% accuracy on held‑out data.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Method</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">An end‑to‑end NLP pipeline (cleaning, normalization, stop‑word removal, tokenization, and sequence padding) feeding a learned embedding layer and an LSTM that reads each article in order rather than as a bag of words.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Why it matters</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">Near‑ceiling scores invite scrutiny of what a model has actually learned. The same preprocessing and sequence‑modeling discipline carries directly to clinical notes, where text is noisy and errors are costly.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><span style="flex:0 0 180px"></span><div style="flex:1 1 460px"><a href="https://github.com/jeanemmanuelk/Fake_news_Detector_LSTM" target="_blank" rel="noopener" data-hover="color:var(--accent)" style="font-size:15px;font-weight:500;color:#1D1D1F;transition:color .3s">View code ↗</a></div></div>
+    </div>
+  </article>
+
+  <article data-screen-label="Case — Cancer modeling" style="max-width:1040px;margin:0 auto;padding:clamp(64px,11vh,112px) 24px">
+    <p data-reveal="" style="margin:0 0 14px;font-size:14px;color:var(--accent);font-weight:500">03 · Mathematical oncology · NIH‑funded</p>
+    <h3 data-reveal="" style="margin:0;max-width:820px;font-size:clamp(30px,4vw,48px);line-height:1.1;font-weight:700;letter-spacing:-0.03em;text-wrap:balance">Modeling cancer immunotherapy response</h3>
+    <div data-reveal="" style="margin:44px 0 52px;display:flex;flex-wrap:wrap;gap:40px 72px">
+      <div>
+        <div style="font-size:clamp(72px,11vw,128px);line-height:0.9;font-weight:700;letter-spacing:-0.045em"><span data-count="3">3</span></div>
+        <p style="margin:14px 0 0;font-size:15px;color:#6E6E73">Peer‑reviewed posters, PWVAS</p>
+      </div>
+      <div>
+        <div style="font-size:clamp(72px,11vw,128px);line-height:0.9;font-weight:700;letter-spacing:-0.045em;color:#8E8E93"><span data-count="3">3</span><span style="font-size:0.45em;letter-spacing:-0.02em"> yrs</span></div>
+        <p style="margin:14px 0 0;font-size:15px;color:#6E6E73">West Virginia INBRE program</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:40px">
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Outcome</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">Three years (2018–2021) of NIH‑funded research through West Virginia INBRE, advised by Dr. Qing Wang, presented in three peer‑reviewed posters at the Proceedings of the West Virginia Academy of Science.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Method</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">Impulsive ordinary differential equations model the interaction between tumor and immune cells, with each treatment dose represented as an instantaneous jump in the system. This lets dosing schedules be varied and their long‑run effect on tumor growth studied analytically and numerically.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Why it matters</p><p style="flex:1 1 460px;margin:0;max-width:680px;font-size:19px;line-height:1.6;color:#424245;text-wrap:pretty">Mechanistic models explain <em>why</em> a therapy works; learned models predict <em>whether</em> it will. My research aims to bring the two together.</p></div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:12px 64px"><p style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600">Posters</p><div style="flex:1 1 460px;max-width:680px;display:flex;flex-direction:column"><a href="https://doi.org/10.55632/pwvas.v93i1.827" target="_blank" rel="noopener" data-hover="color:var(--accent)" style="display:flex;gap:20px;padding:18px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:color .3s"><span style="flex:0 0 44px;font-size:15px;color:#6E6E73;font-variant-numeric:tabular-nums">2021</span><span style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;line-height:1.45;font-weight:500;text-wrap:pretty">A combinatorial anti-CTLA antibody and radiation therapy on metastatic lung cancer ↗</span><span style="font-size:14px;color:#6E6E73">Kouadio, J.-E., Wang, Q. · PWVAS 93(1) · Poster</span></span></a><a href="https://doi.org/10.55632/pwvas.v92i1.708" target="_blank" rel="noopener" data-hover="color:var(--accent)" style="display:flex;gap:20px;padding:18px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:color .3s"><span style="flex:0 0 44px;font-size:15px;color:#6E6E73;font-variant-numeric:tabular-nums">2020</span><span style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;line-height:1.45;font-weight:500;text-wrap:pretty">Modeling the effect of a combinatorial anti-CTLA antibody and radiation therapy on metastatic lung cancer ↗</span><span style="font-size:14px;color:#6E6E73">Kouadio, J.-E., Wang, Q. · PWVAS 92(1) · Poster</span></span></a><a href="https://doi.org/10.55632/pwvas.v91i1.581" target="_blank" rel="noopener" data-hover="color:var(--accent)" style="display:flex;gap:20px;padding:18px 0;border-top:1px solid #E8E8EA;border-bottom:1px solid #E8E8EA;color:#1D1D1F;transition:color .3s"><span style="flex:0 0 44px;font-size:15px;color:#6E6E73;font-variant-numeric:tabular-nums">2019</span><span style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;line-height:1.45;font-weight:500;text-wrap:pretty">Modeling the effect of a combinatorial anti-CTLA antibody and radiation therapy on metastatic melanoma ↗</span><span style="font-size:14px;color:#6E6E73">Kouadio, J.-E., Wang, Q. · PWVAS 91(1) · Poster</span></span></a></div></div>
+    </div>
+  </article>
+</section>
+
+<section data-screen-label="Applied data science" style="background:#F2F2F0">
+  <div style="max-width:1040px;margin:0 auto;padding:clamp(72px,12vh,128px) 24px">
+    <p data-reveal="" style="margin:0 0 16px;font-size:14px;font-weight:600;color:#6E6E73">Applied data science</p>
+    <h2 data-reveal="" style="margin:0 0 64px;max-width:720px;font-size:clamp(32px,4.4vw,52px);line-height:1.08;font-weight:700;letter-spacing:-0.03em;text-wrap:balance">Industry work, built to be used.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+      <div data-reveal="" data-hover="box-shadow:0 18px 40px rgba(0,0,0,0.08);translate:0 -6px" style="background:#FFFFFF;border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .5s cubic-bezier(.2,.7,.2,1),translate .5s cubic-bezier(.2,.7,.2,1)">
+        <p style="margin:0;font-size:13px;color:#6E6E73">Random Forest · SMOTE</p>
+        <h4 style="margin:0;font-size:24px;line-height:1.2;font-weight:600;letter-spacing:-0.02em">Credit risk model</h4>
+        <p style="margin:0;font-size:16px;line-height:1.55;color:#424245;text-wrap:pretty">Default prediction reaching ROC‑AUC ≈ 0.90, with SMOTE oversampling to correct severe class imbalance.</p>
+        <div style="margin-top:auto;padding-top:8px"><a href="https://github.com/jeanemmanuelk/Credit_Risk_modeling" target="_blank" rel="noopener" data-hover="color:var(--accent)" style="font-size:15px;font-weight:500;color:#1D1D1F;transition:color .3s">View code ↗</a></div>
+      </div>
+      <div data-reveal="" data-hover="box-shadow:0 18px 40px rgba(0,0,0,0.08);translate:0 -6px" style="background:#FFFFFF;border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .5s cubic-bezier(.2,.7,.2,1),translate .5s cubic-bezier(.2,.7,.2,1)">
+        <p style="margin:0;font-size:13px;color:#6E6E73">Azure · Databricks · Power BI</p>
+        <h4 style="margin:0;font-size:24px;line-height:1.2;font-weight:600;letter-spacing:-0.02em">Olympic data pipeline</h4>
+        <p style="margin:0;font-size:16px;line-height:1.55;color:#424245;text-wrap:pretty">End‑to‑end cloud pipeline: Data Factory ingestion, Data Lake storage, Databricks transformation, Power BI reporting.</p>
+        <div style="margin-top:auto;padding-top:8px"><a href="https://github.com/jeanemmanuelk/Olympic-azure-databricks-project" target="_blank" rel="noopener" data-hover="color:var(--accent)" style="font-size:15px;font-weight:500;color:#1D1D1F;transition:color .3s">View code ↗</a></div>
+      </div>
+      <div data-reveal="" data-hover="box-shadow:0 18px 40px rgba(0,0,0,0.08);translate:0 -6px" style="background:#FFFFFF;border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .5s cubic-bezier(.2,.7,.2,1),translate .5s cubic-bezier(.2,.7,.2,1)">
+        <p style="margin:0;font-size:13px;color:#6E6E73">Abt Global · Internship</p>
+        <h4 style="margin:0;font-size:24px;line-height:1.2;font-weight:600;letter-spacing:-0.02em">Pay‑equity dashboard</h4>
+        <p style="margin:0;font-size:16px;line-height:1.55;color:#424245;text-wrap:pretty">A machine‑learning self‑service tool (85% accuracy) that surfaces compensation disparities across 3,000+ employees, reported through Power BI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="More work">
+  <div style="max-width:1040px;margin:0 auto;padding:clamp(72px,12vh,128px) 24px">
+    <div style="display:flex;flex-wrap:wrap;gap:24px 64px">
+      <div style="flex:0 0 180px">
+        <p data-reveal="" style="margin:0;font-size:14px;font-weight:600;color:#6E6E73">More work</p>
+      </div>
+      <div style="flex:1 1 560px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));column-gap:48px">
+                <a data-reveal="" href="https://github.com/jeanemmanuelk/Facial-Emotion-Detection" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">Facial Emotion Recognition <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">FER2013: a custom CNN compared against VGG16 transfer learning.</p>
+        </a>
+        <a data-reveal="" href="https://github.com/jeanemmanuelk/cancer_detector" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">Cancer Type Detector <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">Logistic regression classifier, 97% accuracy.</p>
+        </a>
+        <a data-reveal="" href="https://github.com/jeanemmanuelk/Diabetes-prediction" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">Diabetes Prediction <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">Artificial neural network on clinical risk factors.</p>
+        </a>
+        <a data-reveal="" href="https://github.com/jeanemmanuelk/Intel-Image-Classifier-using-CNN" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">Intel Image Classifier <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">CNN for six‑class natural scene recognition.</p>
+        </a>
+        <a data-reveal="" href="https://github.com/jeanemmanuelk/Advanced-SMS-Spam-Filter" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">Advanced SMS Spam Filter <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">Naive Bayes text classifier, 98% accuracy.</p>
+        </a>
+        <a data-reveal="" href="https://github.com/jeanemmanuelk/RegressLy" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">RegressLy <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">No‑code regression modeling tool built with Streamlit.</p>
+        </a>
+        <a data-reveal="" href="https://github.com/jeanemmanuelk/Resume-MatchMate" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">Resume MatchMate <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">Flask + BERT semantic matching of resumes to job postings.</p>
+        </a>
+        <a data-reveal="" href="https://github.com/jeanemmanuelk/page-engagement-ab-testing" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">Page Engagement A/B Test <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">Welch's t‑test, bootstrapping, and power analysis.</p>
+        </a>
+        <a data-reveal="" href="https://github.com/jeanemmanuelk/Smart-bin-proj" target="_blank" rel="noopener" data-hover="translate:6px 0;color:var(--accent)" style="display:block;padding:22px 0;border-top:1px solid #E8E8EA;color:#1D1D1F;transition:translate .4s cubic-bezier(.2,.7,.2,1),color .3s">
+          <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.015em">Smart Recycle Bin <span style="font-weight:400;color:#AEAEB2" aria-hidden="true">↗</span></p>
+          <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6E6E73;text-wrap:pretty">ESP32 IoT sensing with a live monitoring dashboard.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" data-screen-label="Education" style="border-top:1px solid #E8E8EA">
+  <div style="max-width:1040px;margin:0 auto;padding:clamp(72px,12vh,128px) 24px;display:flex;flex-wrap:wrap;gap:24px 64px">
+    <p data-reveal="" style="flex:0 0 180px;margin:0;font-size:14px;font-weight:600;color:#6E6E73">Education</p>
+    <div style="flex:1 1 560px;display:flex;flex-direction:column">
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding:0 0 24px">
+        <div><p style="margin:0;font-size:19px;font-weight:600;letter-spacing:-0.015em">Ph.D., Computer Science</p><p style="margin:4px 0 0;font-size:15px;color:#6E6E73">Institution to be announced</p></div>
+        <p style="margin:0;font-size:15px;color:var(--accent);font-weight:500">Beginning Spring 2027</p>
+      </div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding:24px 0;border-top:1px solid #E8E8EA">
+        <div><p style="margin:0;font-size:19px;font-weight:600;letter-spacing:-0.015em">M.S., Data Analytics &amp; Information Systems</p><p style="margin:4px 0 0;font-size:15px;color:#6E6E73">Shepherd University</p></div>
+      </div>
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding:24px 0;border-top:1px solid #E8E8EA">
+        <div><p style="margin:0;font-size:19px;font-weight:600;letter-spacing:-0.015em">B.S., Computer Engineering</p><p style="margin:4px 0 0;font-size:15px;color:#6E6E73">Shepherd University</p></div>
+      </div>
+      <p data-reveal="" style="margin:56px 0 16px;font-size:14px;font-weight:600;color:#6E6E73">Certifications</p>
+      <div data-reveal="" style="padding:20px 0;border-top:1px solid #E8E8EA;font-size:17px">Machine Learning Specialization · Stanford / Coursera</div>
+      <div data-reveal="" style="padding:20px 0;border-top:1px solid #E8E8EA;font-size:17px">Google Data Analytics Professional Certificate</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" data-screen-label="Contact" style="background:#111112;color:#F5F5F7">
+  <div style="max-width:1040px;margin:0 auto;padding:clamp(88px,14vh,144px) 24px 40px">
+    <h2 data-reveal="" style="margin:0;max-width:760px;font-size:clamp(40px,6vw,72px);line-height:1.05;font-weight:700;letter-spacing:-0.035em;text-wrap:balance">Let's talk research.</h2>
+    <p data-reveal="" style="margin:24px 0 0;max-width:560px;font-size:19px;line-height:1.55;color:#A1A1A6;text-wrap:pretty">Open to collaborations in healthcare AI, medical imaging, and clinical machine learning.</p>
+    <div data-reveal="" style="margin:64px 0 0;display:flex;flex-direction:column">
+      <a href="mailto:emmanuelkj5@gmail.com" data-hover="padding-left:12px;color:#F5F5F7" style="transition:padding .4s cubic-bezier(.2,.7,.2,1),color .3s;display:flex;justify-content:space-between;gap:24px;padding:22px 0;border-top:1px solid #2C2C2E;font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-0.02em"><span>Email</span><span style="color:#86868B">emmanuelkj5@gmail.com</span></a>
+      <a href="Jean_Emmanuel_Kouadio_CV.pdf" download target="_blank" rel="noopener" data-hover="padding-left:12px;color:#F5F5F7" style="transition:padding .4s cubic-bezier(.2,.7,.2,1),color .3s;display:flex;justify-content:space-between;gap:24px;padding:22px 0;border-top:1px solid #2C2C2E;font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-0.02em"><span>CV</span><span style="color:#86868B">PDF ↗</span></a>
+      <a href="https://github.com/jeanemmanuelk" target="_blank" rel="noopener" data-hover="padding-left:12px;color:#F5F5F7" style="transition:padding .4s cubic-bezier(.2,.7,.2,1),color .3s;display:flex;justify-content:space-between;gap:24px;padding:22px 0;border-top:1px solid #2C2C2E;font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-0.02em"><span>GitHub</span><span style="color:#86868B">github.com/jeanemmanuelk</span></a>
+      <a href="https://www.linkedin.com/in/j-emmanuel-k/" target="_blank" rel="noopener" data-hover="padding-left:12px;color:#F5F5F7" style="transition:padding .4s cubic-bezier(.2,.7,.2,1),color .3s;display:flex;justify-content:space-between;gap:24px;padding:22px 0;border-top:1px solid #2C2C2E;border-bottom:1px solid #2C2C2E;font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-0.02em"><span>LinkedIn</span><span style="color:#86868B">linkedin.com/in/j-emmanuel-k</span></a>
+    </div>
+    <p style="margin:88px 0 0;font-size:13px;color:#86868B">© 2026 Jean-Emmanuel Kouadio</p>
+  </div>
+</footer>
+
+</div>
+<script src="js/site.js"></script>
 </body>
 </html>
